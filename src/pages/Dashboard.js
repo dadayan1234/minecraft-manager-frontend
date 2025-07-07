@@ -7,7 +7,7 @@ import LogView from '../components/LogView';
 import apiClient from '../api/axiosConfig';
 import './Dashboard.css'; // Import CSS tambahan
 
-const WEBSOCKET_BASE_URL = (process.env.REACT_APP_API_URL || 'ws://localhost:8000').replace(/^http/, 'ws');
+const WEBSOCKET_BASE_URL = (process.env.REACT_APP_API_URL || 'wss://bemc.nggo.site').replace(/^https/, 'wss');
 
 function Dashboard() {
     const { serverId } = useParams();
