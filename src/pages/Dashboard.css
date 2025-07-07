@@ -1,0 +1,703 @@
+/* Dashboard Container */
+.dashboard-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+}
+
+.dashboard-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.dashboard-container > .container-fluid {
+    position: relative;
+    z-index: 2;
+}
+
+/* Loading Screen */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Loading text */
+.loading-spinner {
+    text-align: center;
+    color: #f8f9fa; /* Light gray instead of pure white */
+    font-size: 1.1rem;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    margin-bottom: 2rem;
+    padding: 2rem 0;
+    animation: slideDown 0.6s ease-out;
+}
+
+.server-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.server-title h1 {
+    color: white;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.server-icon {
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+}
+
+.server-status-badge {
+    position: relative;
+}
+
+.status-pulse {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: blink 1.5s infinite;
+}
+
+.status-pulse.running {
+    background: linear-gradient(45deg, #28a745, #34ce57);
+}
+
+.status-pulse.stopped {
+    background: linear-gradient(45deg, #dc3545, #e74c3c);
+}
+
+/* Glass Cards */
+.glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.glass-header {
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px 20px 0 0;
+    padding: 1rem 1.5rem;
+}
+
+.glass-header h5 {
+    color: #3b3b3b; /* Changed from pure white to light gray for better readability */
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.068); /* Increased shadow for better contrast */
+}
+
+.glass-card .card-body {
+    color: #f8f9fa; /* Ensure body text is readable */
+}
+
+.card-icon {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+/* Control Buttons */
+.control-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.control-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.control-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.control-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.start-btn {
+    background: linear-gradient(45deg, #28a745, #34ce57);
+}
+
+.stop-btn {
+    background: linear-gradient(45deg, #dc3545, #e74c3c);
+}
+
+.restart-btn {
+    background: linear-gradient(45deg, #ffc107, #ffcd39);
+    color: #212529;
+}
+
+.btn-icon {
+    margin-right: 0.5rem;
+}
+
+/* Quick Actions */
+.quick-action-btn {
+    padding: 1rem;
+    border-radius: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.quick-action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.quick-icon {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Tunnel Card */
+.tunnel-card {
+    animation-delay: 0.2s;
+}
+
+.tunnel-port-input label {
+    color: #f8f9fa; /* Light gray instead of white */
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.tunnel-port {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 10px;
+}
+
+.tunnel-port:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: white;
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1);
+}
+
+/* Ensure input placeholders are visible but not too bright */
+.tunnel-port::placeholder,
+.command-field::placeholder,
+.modal-input::placeholder {
+    color: rgba(255, 255, 255, 0.5); /* Slightly more transparent */
+}
+
+.port-icon {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.input-group-text {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px 0 0 10px;
+}
+
+.tunnel-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.start-tunnel {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+}
+
+.stop-tunnel {
+    border: 2px solid #dc3545;
+    color: #dc3545;
+}
+
+.stop-tunnel:hover {
+    background: #dc3545;
+    color: white;
+}
+
+.tunnel-status {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f8f9fa; /* Add explicit color for tunnel status text */
+}
+
+/* General text color for card content */
+.glass-card p,
+.glass-card span,
+.glass-card div {
+    color: #f8f9fa;
+}
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.status-label {
+    color: #e9ecef; /* Slightly darker than pure white */
+    font-weight: 600;
+}
+
+.tunnel-status-badge {
+    border-radius: 20px;
+    padding: 0.4rem 0.8rem;
+}
+
+.tunnel-url {
+    margin-top: 1rem;
+}
+
+.url-label {
+    color: #e9ecef; /* Slightly darker than pure white */
+    font-weight: 600;
+}
+
+.tunnel-link {
+    color: #17a2b8;
+    text-decoration: none;
+    word-break: break-all;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.6rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.tunnel-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #17a2b8;
+}
+
+/* Command Console */
+.command-card {
+    animation-delay: 0.4s;
+}
+
+.command-input {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.command-field {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 10px;
+    padding: 0.75rem;
+}
+
+.command-field:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: white;
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1);
+}
+
+.command-field::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.send-btn {
+    background: linear-gradient(45deg, #17a2b8, #138496);
+    border: none;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.send-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(45deg, #138496, #0f6674);
+}
+
+.send-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Logs Card */
+.logs-card {
+    animation-delay: 0.6s;
+}
+
+.log-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.log-badge {
+    border-radius: 20px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+}
+
+/* Error Alert */
+.error-alert {
+    background: rgba(220, 53, 69, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    border-radius: 15px;
+    color: white;
+    animation: fadeInDown 0.5s ease-out;
+}
+
+.error-alert .alert-heading {
+    color: #ff6b6b;
+    font-weight: 600;
+}
+
+/* Quick Action Modal */
+.quick-action-modal .modal-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    color: white;
+}
+
+.modal-header-custom {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px 20px 0 0;
+}
+
+.modal-header-custom .modal-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    font-weight: 600;
+}
+
+.modal-icon {
+    font-size: 1.5rem;
+}
+
+.modal-body-custom {
+    padding: 1.5rem;
+}
+
+/* Modal text colors */
+.modal-body-custom .form-label {
+    color: #f8f9fa; /* Light gray for better readability */
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.modal-input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 10px;
+    padding: 0.75rem;
+}
+
+.modal-input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: white;
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1);
+}
+
+.modal-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.modal-submit-btn {
+    background: linear-gradient(45deg, #28a745, #34ce57);
+    border: none;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.modal-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(45deg, #34ce57, #28a745);
+}
+
+.modal-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0.3;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-header {
+        padding: 1rem 0;
+    }
+    
+    .server-title h1 {
+        font-size: 2rem;
+    }
+    
+    .control-buttons {
+        flex-direction: column;
+    }
+    
+    .control-btn {
+        min-width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .command-input {
+        flex-direction: column;
+    }
+    
+    .send-btn {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+    
+    .quick-action-btn {
+        margin-bottom: 1rem;
+    }
+    
+    .glass-card {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard-container .container-fluid {
+        padding: 0 1rem;
+    }
+    
+    .server-title {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .server-title h1 {
+        font-size: 1.8rem;
+    }
+    
+    .glass-card {
+        border-radius: 15px;
+    }
+    
+    .glass-header {
+        padding: 0.75rem 1rem;
+        border-radius: 15px 15px 0 0;
+    }
+    
+    .card-icon {
+        font-size: 1.2rem;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Focus styles for accessibility */
+.control-btn:focus,
+.quick-action-btn:focus,
+.tunnel-btn:focus,
+.send-btn:focus,
+.modal-submit-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.3);
+}
+
+.command-field:focus,
+.tunnel-port:focus,
+.modal-input:focus {
+    outline: none;
+}
+
+/* Animation delays for staggered entry */
+.server-control-card {
+    animation-delay: 0.1s;
+}
+
+.quick-actions-card {
+    animation-delay: 0.2s;
+}
+
+.logs-card {
+    animation-delay: 0.3s;
+}
+
+.tunnel-card {
+    animation-delay: 0.4s;
+}
+
+.command-card {
+    animation-delay: 0.5s;
+}
