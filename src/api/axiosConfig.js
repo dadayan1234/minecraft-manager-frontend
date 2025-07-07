@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-    baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8000',
+    baseURL: process.env.REACT_APP_API_URL || 'https//bemc.nggo.site',
 });
 
 apiClient.interceptors.request.use((config) => {

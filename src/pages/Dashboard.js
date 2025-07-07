@@ -79,7 +79,7 @@ function Dashboard() {
         if (serverStatus.running) {
             if (!ws.current || ws.current.readyState === WebSocket.CLOSED) {
                 const token = localStorage.getItem('authToken');
-                const websocketUrl = `${WEBSOCKET_BASE_URL}/ws/log/${serverId}?token=${token}`;
+                const websocketUrl = `${WEBSOCKET_BASE_URL}ws/log/${serverId}?token=${token}`;
                 ws.current = new WebSocket(websocketUrl);
                 setLogs(['--- Mencoba menyambungkan log... ---\n']);
                 ws.current.onopen = () => setLogs(prev => [...prev, '--- Koneksi log berhasil ---\n']);
